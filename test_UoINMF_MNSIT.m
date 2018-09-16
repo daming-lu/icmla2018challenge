@@ -94,23 +94,23 @@ er1=norm(X-Wnew1*H1,'fro');  %% reconstruction error with original data
 
 
 %% Visualization
-[n,d]=size(A);
-r=randperm(n);
-% W1=mdlstrct.opt.Wopt;
-figure()
-l1=0;
-for l=1:5
-    for i=1:4
-     subplot(5,16,i+l1)
-    imshow((reshape(H1(i+l1/4,:),[],56)));
-     subplot(5,16,i+l1+4)
-    image(imcomplement(mat2gray(reshape((abs(W1(r(i+l1/4),:))>5.01),4,[])))','CDataMapping','scaled');
-    subplot(5,16,i+l1+8)
-    imshow(mat2gray(reshape(A(r(i+l1/4),:),[],56)));
-     subplot(5,16,i+l1+12)
-    imshow((reshape(A(r(i+l1/4),:),[],56)));
-    end
-    l1=l1+16;
-end
-set(gca,'LooseInset',get(gca,'TightInset'));
+% [n,d]=size(A);
+% r=randperm(n);
+% % W1=mdlstrct.opt.Wopt;
+% figure()
+% l1=0;
+% for l=1:5
+%     for i=1:4
+%      subplot(5,16,i+l1)
+%     imshow((reshape(H1(i+l1/4,:),[],56)));
+%      subplot(5,16,i+l1+4)
+%     image(imcomplement(mat2gray(reshape((abs(W1(r(i+l1/4),:))>5.01),4,[])))','CDataMapping','scaled');
+%     subplot(5,16,i+l1+8)
+%     imshow(mat2gray(reshape(A(r(i+l1/4),:),[],56)));
+%      subplot(5,16,i+l1+12)
+%     imshow((reshape(A(r(i+l1/4),:),[],56)));
+%     end
+%     l1=l1+16;
+% end
+% set(gca,'LooseInset',get(gca,'TightInset'));
 
