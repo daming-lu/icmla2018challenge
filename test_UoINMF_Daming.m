@@ -27,7 +27,7 @@ end
 %% Create noisy data
 A=[];
 sigma=0.25;
-for l=1:1
+for l=1:10
 %     X1=X+sigma*abs(randn(size(X)));  %--Absolute Gaussian noise
    X1=X+mat2gray(poissrnd(sigma,size(X))); %--Poisson Noise
     A=[A;X1];
