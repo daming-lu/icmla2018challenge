@@ -27,7 +27,7 @@ end
 %% Create noisy data
 A=[];
 sigma=0.25;
-for l=1:10
+for l=1:1
 %     X1=X+sigma*abs(randn(size(X)));  %--Absolute Gaussian noise
    X1=X+mat2gray(poissrnd(sigma,size(X))); %--Poisson Noise
     A=[A;X1];
@@ -47,7 +47,7 @@ for i=1:20
 %     imshow((reshape(H11(i,:),[],56)));
     imshow((reshape(A(i,:),[],56)));
 end
-return
+% return
 %% UoI_NMF
 %--Parameters
 params.k = 20;       % Rank k of the factorization
@@ -71,6 +71,37 @@ nnzW1 = median(sum(abs(W1)>1.0,2));
 nnzH1 = median(sum(abs(H1)>0.05,2));
 
 Aest=W1*H1;
+figure('Name','A')
+title('A')
+
+for i=1:20
+%     print i
+    fprintf('%d. Hello world!\n', i);
+%     size(X(i,:))  % 1568 numbers
+% %     two_digits = reshape(X(i,:),[],56);
+%     size(two_digits)
+%     imshow(two_digits)
+    subplot(4,5,i)
+%     H11(i,:) = mat2gray(X(i,:));
+%     imshow((reshape(H11(i,:),[],56)));
+    imshow((reshape(A(i,:),[],56)));
+end
+
+figure('Name','Aest')
+title('Aest')
+
+for i=1:20
+%     print i
+    fprintf('%d. Hello world!\n', i);
+%     size(X(i,:))  % 1568 numbers
+% %     two_digits = reshape(X(i,:),[],56);
+%     size(two_digits)
+%     imshow(two_digits)
+    subplot(4,5,i)
+%     H11(i,:) = mat2gray(X(i,:));
+%     imshow((reshape(H11(i,:),[],56)));
+    imshow((reshape(Aest(i,:),[],56)));
+end
 %%--plot basis and bases quality
 figure()
 for i=1:16

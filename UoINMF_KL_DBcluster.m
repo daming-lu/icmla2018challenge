@@ -51,7 +51,7 @@ for c = 1:B1
 end
 %% Choose best bases-set by clustering.
 %  Uses clustering idea to select best set of bases
-H2(all(~any(H2'), 1 ),:) = []; %remove zero bases
+H2(all(~any(H2'), 1 ),:) = []; %remove zero bases  :  useless as none of the elem is zero
 H2 = normalize_H(H2,2);
 output.H_all=H2;
 
