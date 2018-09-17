@@ -6,23 +6,55 @@ addpath 'nmflib/'
 
 %% Load Data
 load('Datasets/MNSIT_2digits_100.mat');
- load('Datasets/Exact_20bases_MNSIT_2digits_100.mat');
+load('Datasets/Exact_20bases_MNSIT_2digits_100.mat');
 X=X';
+
+%% Show first 20 2-digit images
+figure()
+for i=1:20
+%     print i
+    fprintf('%d. Hello world!\n', i);
+%     size(X(i,:))  % 1568 numbers
+% %     two_digits = reshape(X(i,:),[],56);
+%     size(two_digits)
+%     imshow(two_digits)
+    subplot(4,5,i)
+%     H11(i,:) = mat2gray(X(i,:));
+%     imshow((reshape(H11(i,:),[],56)));
+    imshow((reshape(X(i,:),[],56)));
+end
+% return
 %% Create noisy data
 A=[];
 sigma=0.25;
 for l=1:10
-    X1=X+sigma*abs(randn(size(X)));  %--Absolute Gaussian noise
-   %X1=X+mat2gray(poissrnd(sigma,size(X))); %--Poisson Noise
+%     X1=X+sigma*abs(randn(size(X)));  %--Absolute Gaussian noise
+   X1=X+mat2gray(poissrnd(sigma,size(X))); %--Poisson Noise
     A=[A;X1];
 end
+
+%% Check what it looks like after adding noise
+figure()
+for i=1:20
+%     print i
+    fprintf('%d. Hello world!\n', i);
+%     size(X(i,:))  % 1568 numbers
+% %     two_digits = reshape(X(i,:),[],56);
+%     size(two_digits)
+%     imshow(two_digits)
+    subplot(4,5,i)
+%     H11(i,:) = mat2gray(X(i,:));
+%     imshow((reshape(H11(i,:),[],56)));
+    imshow((reshape(A(i,:),[],56)));
+end
+return
 %% UoI_NMF
 %--Parameters
- params.k=20;       % Rank k of the factorization
- params.B1 =20;     % number of bootstrap samples for selection
- params.B2 =10;     % number of bootstrap samples for bagging (estimation)
+params.k = 20;       % Rank k of the factorization
+params.B1 = 20;     % number of bootstrap samples for selection
+params.B2 = 10;     % number of bootstrap samples for bagging (estimation)
 
-params.epsilon=0.3; % Density parameter in DBSCAN
+params.epsilon = 0.3; % Density parameter in DBSCAN
 params.MinPts =  params.B1/4; %Minimum points in a cluster
   
 [output1] =  UoINMF_KL_DBcluster(A,params);
@@ -35,22 +67,22 @@ k=size(H1,1);
 
 %% Evaluation
 %--- calculate nonzeros and errors
-nnzW1=median(sum(abs(W1)>1.0,2));
-nnzH1=median(sum(abs(H1)>0.05,2));
+nnzW1 = median(sum(abs(W1)>1.0,2));
+nnzH1 = median(sum(abs(H1)>0.05,2));
 
 Aest=W1*H1;
 %%--plot basis and bases quality
 figure()
 for i=1:16
     subplot(5,4,i)
-     H11(i,:)=mat2gray(H1(i,:));
+     H11(i,:) = mat2gray(H1(i,:));
      imshow((reshape(H11(i,:),[],56)));
 end
 %%-- Correlation with the exact bases
-C1=normc(H11*Hopt');
-[corr1,id1]=max(C1,[],2);
+C1 = normc(H11*Hopt');
+[corr1,id1] = max(C1,[],2);
 
-Hl1=[];j1=[];
+Hl1 = []; j1 = [];
 for j=1:k
     i1=find(id1==j);
     if numel(i1)==0
