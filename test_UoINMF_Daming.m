@@ -10,7 +10,7 @@ load('Datasets/Exact_20bases_MNSIT_2digits_100.mat');
 X=X';
 
 %% Show first 20 2-digit images
-figure()
+figure('Name','first 20 2-digit images')
 for i=1:20
 %     print i
     fprintf('%d. Hello world!\n', i);
@@ -24,6 +24,16 @@ for i=1:20
     imshow((reshape(X(i,:),[],56)));
 end
 % return
+
+
+%%--plot optimized H first
+figure('Name','optimized Hopt')
+for i=1:20
+    subplot(5,4,i)
+     cur_row = mat2gray(Hopt(i,:));
+     imshow((reshape(cur_row,[],56)));
+end
+
 %% Create noisy data
 A=[];
 sigma=0.25;
@@ -34,7 +44,7 @@ for l=1:10
 end
 
 %% Check what it looks like after adding noise
-figure()
+figure('Name','after adding noise')
 for i=1:20
 %     print i
     fprintf('%d. Hello world!\n', i);
@@ -71,7 +81,7 @@ nnzW1 = median(sum(abs(W1)>1.0,2));
 nnzH1 = median(sum(abs(H1)>0.05,2));
 
 Aest=W1*H1;
-figure('Name','A')
+figure('Name','A matrix')
 title('A')
 
 for i=1:20
@@ -87,7 +97,7 @@ for i=1:20
     imshow((reshape(A(i,:),[],56)));
 end
 
-figure('Name','Aest')
+figure('Name','Aest matrix')
 title('Aest')
 
 for i=1:20
@@ -102,12 +112,14 @@ for i=1:20
 %     imshow((reshape(H11(i,:),[],56)));
     imshow((reshape(Aest(i,:),[],56)));
 end
+
 %%--plot basis and bases quality
-figure()
-for i=1:16
+figure('Name','plot basis and bases quality, H1')
+for i=1:20
     subplot(5,4,i)
-     H11(i,:) = mat2gray(H1(i,:));
-     imshow((reshape(H11(i,:),[],56)));
+%     cur_row = mat2gray(H1(i,:));
+    H11(i,:)=mat2gray(H1(i,:));
+    imshow((reshape(H11(i,:),[],56)));
 end
 %%-- Correlation with the exact bases
 C1 = normc(H11*Hopt');
@@ -129,7 +141,7 @@ for j=1:k
 end
 
 
-figure()
+figure('Name','# Correlation between exact and learned bases')
 plot(sort(abs(corr1)),'r*-')
 legend('UoI-NMF')
 xlabel('Bases')
@@ -137,7 +149,7 @@ ylabel('Correlation with exact bases')
 title('Correlation between exact and learned bases')
 % 
 % 
-figure()
+figure('Name','# Mean Squared Error between exact and learned bases')
 plot(sort(rms1),'r*-')
 legend('UoI-NMF')
 xlabel('Bases')
