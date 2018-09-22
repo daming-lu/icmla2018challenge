@@ -66,7 +66,7 @@ params.B2 = 10;     % number of bootstrap samples for bagging (estimation)
 
 params.epsilon = 0.3; % Density parameter in DBSCAN
 params.MinPts =  params.B1/4; %Minimum points in a cluster
-
+  
 [output1] =  UoINMF_KL_DBcluster(A,params);
 
 %[mdlstrct] = basicNMF_KL_UoI_corrthres_new(A,maxk,0.92);
@@ -147,8 +147,8 @@ legend('UoI-NMF')
 xlabel('Bases')
 ylabel('Correlation with exact bases')
 title('Correlation between exact and learned bases')
-%
-%
+% 
+% 
 figure('Name','# Mean Squared Error between exact and learned bases')
 plot(sort(rms1),'r*-')
 legend('UoI-NMF')
@@ -160,7 +160,7 @@ title('Mean Squared Error between exact and learned bases')
 
  eer1=norm(A-Aest,'fro'); %% reconstruction error with noisy data
 
-
+ 
   for l=1:size(X)
             Wnew1(l,:)= lsqnonneg(H1',X(l,:)')';
   end
@@ -188,3 +188,4 @@ er1=norm(X-Wnew1*H1,'fro');  %% reconstruction error with original data
 %     l1=l1+16;
 % end
 % set(gca,'LooseInset',get(gca,'TightInset'));
+
