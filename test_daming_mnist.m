@@ -58,6 +58,7 @@ for i=1:20
     imshow((reshape(A(i,:),[],56)));
 end
 % return
+
 %% UoI_NMF
 %--Parameters
 params.k = 20;       % Rank k of the factorization
@@ -74,6 +75,13 @@ W1=output1.W;
 H1=output1.H;
 k=size(H1,1);
 
+%%--plot calculated H first
+figure('Name','H1')
+for i=1:20
+    subplot(5,4,i)
+     cur_row = mat2gray(H1(i,:));
+     imshow((reshape(cur_row,[],56)));
+end
 
 %% Evaluation
 %--- calculate nonzeros and errors
