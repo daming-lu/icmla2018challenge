@@ -62,6 +62,8 @@ In this section, we illustrate the application of online dictionary learning on 
 We can tell from the metrics that online dictionary learning is on the same the accuracy level as \textit{UoI-NMF\textsubscript{cluster}}. Both methods learned the bases/parts pretty well. Moreover, since online dictionary learning does not have the clustering part as in \textit{UoI-NMF\textsubscript{cluster}}, it ran faster, as is shown in Table. 1.
 
 %- plot figures -%
+
+%-MNIST-%
 \begin{figure*}[!htb]
 \centering
 \minipage{0.25\textwidth}
@@ -79,6 +81,24 @@ We can tell from the metrics that online dictionary learning is on the same the 
 \caption{First $5\times 4$ images: 20 bases learned by \textit{UoI-NMF\textsubscript{cluster}} for the high noise MNIST two digits data. Second $5\times 4$ images: 20 bases learned by \textit{Online Dictionary Learning} for the same dataset. Third figure: Correlation between exact and learned bases for \textit{UoI-NMF\textsubscript{cluster}} and \textit{Online Dictionary Learning}. Fourth figure: Mean Squared Error between exact and learned bases for \textit{UoI-NMF\textsubscript{cluster}} and \textit{Online Dictionary Learning}. }\label{fig:mnist_4}
 \end{figure*}
 
+%-Swimmer-%
+\begin{figure*}[!htb]
+\centering
+\minipage{0.25\textwidth}
+  \includegraphics[width=\linewidth]{swimmer_uoi_best_basis}
+\endminipage\hfill
+\minipage{0.25\textwidth}
+  \includegraphics[width=\linewidth]{swimmer_odl_best_641}
+\endminipage\hfill
+\minipage{0.25\textwidth}%
+  \includegraphics[width=\linewidth]{swimmer_corr_2in1}
+\endminipage
+\minipage{0.25\textwidth}%
+  \includegraphics[width=\linewidth]{swimmer_mse_2in1}
+\endminipage
+\caption{First $4\times 4$ images: 16 bases learned by \textit{UoI-NMF\textsubscript{cluster}} for the
+high noise Swimmer data. Second $4\times 4$ images: 16 bases learned by \textit{Online Dictionary Learning} for the same dataset. Third figure: Correlation between exact and learned bases for \textit{UoI-NMF\textsubscript{cluster}} and \textit{Online Dictionary Learning}. Fourth figure: Mean Squared Error between exact and learned bases for \textit{UoI-NMF\textsubscript{cluster}} and \textit{Online Dictionary Learning}. }\label{fig:swimmer_4}
+\end{figure*}
 
 %-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%
 \section{Ease of Use}
