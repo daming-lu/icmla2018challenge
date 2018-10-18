@@ -47,11 +47,17 @@ We compared our method with \textit{UoI-NMF\textsubscript{cluster}} \cite{b5} an
 \subsection{Online Dictionary Learning}
 
 Online dictionary learning was first introduced in \cite{b4}. Assume we have a finite training dataset as $ X=[x_1,...x_n] $ in $R^{m\times n}$, we want to learn a dictionary $D$ as a ``good'' representation of signal $x$. Normally the dimension $m$ is relatively small compared to the total amount of data $n$. We want to have a $k\ll n$ such as we can only use a few elements (atoms) in $D$ to represent signal $x$. Our aim is to optimize $\ell(x, D)$ as the $\ell_{1}$ sparse coding problem:
-
 $$ \ell(x, D) \triangleq \min\limits_{\alpha \in R^k} \frac{1}{2}\Arrowvert x-D\alpha \Arrowvert^{2}_{2}+\lambda\Arrowvert \alpha \Arrowvert_{1}$$
-
 where $ \lambda $ is a regularization parameter. We followed the algorithm as
 mentioned in \cite{b4} with a mini-batch extension in order to prevent polluting the initialization. \cite{b5} used a clustering process to extract true bases from noise, which is also a good idea.
+
+%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%
+\section{NUMERIC EXPERIMENTS}
+In this section, we illustrate the application of online dictionary learning on two datasets, Swimmer dataset and MNIST 2-digit dataset. The details of these two datasets were introduced in \cite{b5}. We used SPAMS library \cite{b6,b7} as our backbone. After 1,000 iterations, the performance as well as learned atoms are shown in Fig. 1 for MNIST 2-digits dataset, side by side with \textit{UoI-NMF\textsubscript{cluster}}.
+
+We can tell from the metrics that online dictionary learning is on the same the accuracy level as \textit{UoI-NMF\textsubscript{cluster}}. Both methods learned the bases/parts pretty well. Moreover, since online dictionary learning does not have the clustering part as in \textit{UoI-NMF\textsubscript{cluster}}, it ran faster, as is shown in Table. 1.
+
+
 
 %-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%
 \section{Ease of Use}
