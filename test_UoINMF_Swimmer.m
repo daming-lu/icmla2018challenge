@@ -71,6 +71,7 @@ end
 
 figure()
 plot(sort(abs(corr1)),'r*-')
+corr1_swimmer_uoi = corr1;
 legend('UoI-NMF')
 xlabel('Bases')
 ylabel('Correlation with exact bases')
@@ -79,6 +80,7 @@ title('Correlation between exact and learned bases')
 % 
 figure()
 plot(sort(rms1),'r*-')
+rms1_swimmer_uoi = rms1;
 legend('UoI-NMF')
 xlabel('Bases')
 ylabel('Mean Squared Error')
@@ -95,7 +97,9 @@ title('Mean Squared Error between exact and learned bases')
 
 er1=norm(X-Wnew1*H1,'fro');  %% reconstruction error with original data
 
-
+aaaaa = 12*22;
+aaaaa = 12*22;
+aaaaa = 12*22;
 
 %% Visualization
 % r=randperm(n);
