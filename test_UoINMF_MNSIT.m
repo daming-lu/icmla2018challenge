@@ -41,7 +41,7 @@ nnzH1=median(sum(abs(H1)>0.05,2));
 Aest=W1*H1;
 %%--plot basis and bases quality
 figure()
-for i=1:16
+for i=1:20
     subplot(5,4,i)
      H11(i,:)=mat2gray(H1(i,:));
      imshow((reshape(H11(i,:),[],56)));
@@ -72,6 +72,7 @@ legend('UoI-NMF')
 xlabel('Bases')
 ylabel('Correlation with exact bases')
 title('Correlation between exact and learned bases')
+corr1_uoi = corr1;
 %
 %
 figure()
@@ -80,18 +81,19 @@ legend('UoI-NMF')
 xlabel('Bases')
 ylabel('Mean Squared Error')
 title('Mean Squared Error between exact and learned bases')
+rms1_uoi = rms1;
 
 %---- Error calculation
 
  eer1=norm(A-Aest,'fro') %% reconstruction error with noisy data
-
+eer1_uoi = eer1;
 
   for l=1:size(X)
             Wnew1(l,:)= lsqnonneg(H1',X(l,:)')';
   end
 
 er1=norm(X-Wnew1*H1,'fro')  %% reconstruction error with original data
-
+er1_uoi = er1;
 
 %% Visualization
 % [n,d]=size(A);
