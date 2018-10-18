@@ -103,10 +103,10 @@ high noise Swimmer data. Second $4\times 4$ images: 16 bases learned by \textit{
 %-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%
 After 1,000 iterations, the performance metrics as well as the learned atoms are shown in Fig. 1 for MNIST 2-digits dataset, side by side with \textit{UoI-NMF\textsubscript{cluster}}. The corresponding results for Swimmer dataset are shown in Fig. 2.
 
-We can tell from the metrics that \textit{Online Dictionary Learning} has a slightly better accuracy than \textit{UoI-NMF\textsubscript{cluster}}. Both methods learned the bases/parts pretty well. Moreover, since \textit{Online Dictionary Learning} does not have the clustering part as in \textit{UoI-NMF\textsubscript{cluster}}, it runs faster, as is shown in Table. 1.
+We can tell from the metrics that \textit{Online Dictionary Learning} has a slightly better accuracy than \textit{UoI-NMF\textsubscript{cluster}}. Both methods learned the bases/parts pretty well. Moreover, since \textit{Online Dictionary Learning} does not have the clustering part as in \textit{UoI-NMF\textsubscript{cluster}}, it runs faster, as is shown in Table. I.
 
 \begin{table}[htbp]
-\caption{Time Cost of the 2 Methods}
+\caption{Time Cost of the Two Methods}
 \begin{center}
 \begin{tabular}{|c|c|c|}
 \hline
@@ -123,9 +123,52 @@ Swimmer & 213.82 & 2.29 \\
 \end{center}
 \end{table}
 
-\section{Ease of Use}
+A large amount of time used by \textit{UoI-NMF\textsubscript{cluster}} is spent on clustering to get strong signal on the bases, which means \textit{UoI-NMF\textsubscript{cluster}} is more robust. Table. II \& III endorse this conclusion by showing reconstruction errors of the two methods with noisy and original data. We can see that both methods have similar reconstruction errors on noisy data. But \textit{UoI-NMF\textsubscript{cluster}} has a much lower reconstruction error on original data. We consider it as a benefit of the stronger bases learned by \textit{UoI-NMF\textsubscript{cluster}}. We also observed that in multiple runs, \textit{UoI-NMF\textsubscript{cluster}} inclines to give stable results of good quality whereas \textit{Online Dictionary Learning} could occasionally get polluted by the noise and get poor results.
 
-\subsection{Maintaining the Integrity of the Specifications}
+\begin{table}[htbp]
+\caption{Reconstruction Error with Noisy Data}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Dataset}&\multicolumn{2}{|c|}{\textbf{Reconstruction Error}} \\
+\cline{2-3}
+ & \textbf{\textit{UoI-NMF\textsubscript{cluster}}}& \textbf{\textit{Online Dictionary Learning}} \\
+\hline
+MNIST 2-digits & 192.9003 & 195.2450 \\
+\hline
+Swimmer & 242.0457 & 274.0686 \\
+\hline
+\end{tabular}
+\label{tab2}
+\end{center}
+\end{table}
+
+\begin{table}[htbp]
+\caption{Reconstruction Error with Original Data}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Dataset}&\multicolumn{2}{|c|}{\textbf{Reconstruction Error}} \\
+\cline{2-3}
+ & \textbf{\textit{UoI-NMF\textsubscript{cluster}}}& \textbf{\textit{Online Dictionary Learning}} \\
+\hline
+MNIST 2-digits & 44.7821 & 238.2057 \\
+\hline
+Swimmer & 57.4769 & 261.9353 \\
+\hline
+\end{tabular}
+\label{tab3}
+\end{center}
+\end{table}
+
+\section{CONCLUSION}
+
+We proposed a new application of \textit{Online Dictionary Learning} to the task of parts-based decomposition of noisy data in two datasets and compared the performance with the state-of-the-art method \textit{UoI-NMF\textsubscript{cluster}}. We found that both methods could find the actual bases in the process of dimension reduction for noisy data. \textit{UoI-NMF\textsubscript{cluster}} takes longer time, mainly due to the DBSCAN clustering step. However, we found this step crucial for the robustness. The clustering step indeed consolidated the learned bases so that they are more robust to noise. \textit{Online Dictionary Learning}, on the other hand, runs faster and has the potential of dealing with large amount of data, in an online or streaming way. In [When Does Non-Negative Matrix Factorization
+Give a Correct Decomposition into Parts], it shows that both methods show the same mathematical foundation. That is why both could find the parts-based components.
+
+\section{ACKNOWLEDGMENT}
+
+The author would like to thank Shashanka Ubaru for providing thought-provoking ideas about sparse coding, dictionary learning and non-convex optimization.
 
 The IEEEtran class file is used to format your paper and style the text. All margins,
 column widths, line spaces, and text fonts are prescribed; please do not
