@@ -7,6 +7,10 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
+\usepackage{subcaption}
+
+\usepackage{lipsum}% http://ctan.org/pkg/lipsum
+
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
@@ -57,6 +61,23 @@ In this section, we illustrate the application of online dictionary learning on 
 
 We can tell from the metrics that online dictionary learning is on the same the accuracy level as \textit{UoI-NMF\textsubscript{cluster}}. Both methods learned the bases/parts pretty well. Moreover, since online dictionary learning does not have the clustering part as in \textit{UoI-NMF\textsubscript{cluster}}, it ran faster, as is shown in Table. 1.
 
+%- plot figures -%
+\begin{figure*}[!htb]
+\centering
+\minipage{0.25\textwidth}
+  \includegraphics[width=\linewidth]{uoi_best_basis}
+\endminipage\hfill
+\minipage{0.25\textwidth}
+  \includegraphics[width=\linewidth]{odl_best_basis_better}
+\endminipage\hfill
+\minipage{0.25\textwidth}%
+  \includegraphics[width=\linewidth]{corr_2in1}
+\endminipage
+\minipage{0.25\textwidth}%
+  \includegraphics[width=\linewidth]{mse_2in1}
+\endminipage
+\caption{First $5\times 4$ images: 20 bases learned by \textit{UoI-NMF\textsubscript{cluster}} for the high noise MNIST two digits data. Second $5\times 4$ images: 20 bases learned by \textit{Online Dictionary Learning} for the same dataset. Third figure: Correlation between exact and learned bases for \textit{UoI-NMF\textsubscript{cluster}} and \textit{Online Dictionary Learning}. Fourth figure: Mean Squared Error between exact and learned bases for \textit{UoI-NMF\textsubscript{cluster}} and \textit{Online Dictionary Learning}. }\label{fig:mnist_4}
+\end{figure*}
 
 
 %-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%
